@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package service;
+package Entity.service;
 
 import Entity.Alumno;
 import java.util.List;

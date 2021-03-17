@@ -38,33 +38,20 @@ public class Alumno implements Serializable {
     @NotNull
     @Column(name = "idAlumno")
     private Integer idAlumno;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
+    @Size(max = 45)
     @Column(name = "Nombre")
     private String nombre;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
+    @Size(max = 45)
     @Column(name = "Apellido")
     private String apellido;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "Promedio")
-    private int promedio;
+    private Integer promedio;
 
     public Alumno() {
     }
 
     public Alumno(Integer idAlumno) {
         this.idAlumno = idAlumno;
-    }
-
-    public Alumno(Integer idAlumno, String nombre, String apellido, int promedio) {
-        this.idAlumno = idAlumno;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.promedio = promedio;
     }
 
     public Integer getIdAlumno() {
@@ -91,11 +78,11 @@ public class Alumno implements Serializable {
         this.apellido = apellido;
     }
 
-    public int getPromedio() {
+    public Integer getPromedio() {
         return promedio;
     }
 
-    public void setPromedio(int promedio) {
+    public void setPromedio(Integer promedio) {
         this.promedio = promedio;
     }
 
