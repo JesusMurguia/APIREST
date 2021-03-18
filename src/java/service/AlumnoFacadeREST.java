@@ -9,6 +9,8 @@ import Entity.Alumno;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -19,6 +21,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 /**
  *
@@ -30,7 +33,8 @@ public class AlumnoFacadeREST extends AbstractFacade<Alumno> {
 
     @PersistenceContext(unitName = "fasdfPU")
     private EntityManager em;
-
+    
+    
     public AlumnoFacadeREST() {
         super(Alumno.class);
     }
@@ -61,7 +65,24 @@ public class AlumnoFacadeREST extends AbstractFacade<Alumno> {
     public Alumno find(@PathParam("id") Integer id) {
         return super.find(id);
     }
-
+    
+    
+    @GET
+    @Path("nombre/{nombre}")
+    @Produces({MediaType.APPLICATION_JSON})
+    public Response findByName(@PathParam("nombre") String nombre) {
+        List<Alumno> lista = em.createNamedQuery("Alumno.findByNombre").setParameter("nombre", nombre).getResultList();
+        return Response.ok().entity(lista).build();
+    }
+    
+    @GET
+    @Path("apellido/{apellido}")
+    @Produces({MediaType.APPLICATION_JSON})
+    public Response findByApellido(@PathParam("apellido") String apellido) {
+        List<Alumno> lista = em.createNamedQuery("Alumno.findByApellido").setParameter("apellido", apellido).getResultList();
+        return Response.ok().entity(lista).build();
+    }
+ 
     @GET
     @Override
     @Produces({MediaType.APPLICATION_JSON})
